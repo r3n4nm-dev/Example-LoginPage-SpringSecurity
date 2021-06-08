@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Login</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="css/login.css" >
+
+<style>
+.red {
+background-color: #d9534f;
+}
+
+@keyframes fa-blink {
+     0% { opacity: 1; }
+     50% { opacity: 0.5; }
+     100% { opacity: 0; }
+ }
+.fa-blink {
+   -webkit-animation: fa-blink .75s linear infinite;
+   -moz-animation: fa-blink .75s linear infinite;
+   -ms-animation: fa-blink .75s linear infinite;
+   -o-animation: fa-blink .75s linear infinite;
+   animation: fa-blink .75s linear infinite;
+}
+</style>
+
+</head>
+<body class="bg-dark">
+	<div class="container">
+		<div class="d-flex justify-content-center h-100">
+			<div class="card">
+				<div class="card-header">Login</div>
+				<div class="card-body">
+					<form th:action="@{/login}" method="post">
+						<div class="form-group">
+							<div class="input-group form-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user"></i></span>
+								</div>
+								<input type="text" class="form-control" id="username"
+									name="username" placeholder="nome de usuário">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group form-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-key"></i></span>
+								</div>
+								<input type="password" id="password" name="password"
+									class="form-control" placeholder="senha">
+							</div>
+						</div>
+						<br />
+					
+						<input type="submit" value="Login"
+							class="btn btn-primary btn-block"> 
+					</form>
+				</div>
+				<div class="card-footer">
+					<a th:href="@{/}" data-toggle="modal" data-target="#infoModal">Informações</a>
+				</div>
+			</div>
+			<div class="card bg-light" style="max-width: 17rem;">
+				<div class="card-header">
+					<a th:href="@{/}" data-toggle="modal" data-target="#infoModal"><i
+						class="fas fa-info-circle fa-blink"></i></a> Dados para acesso:
+				</div>
+				<div class="card-body">
+					<p class="card-text">
+						Administrador: </br>Usuário: <i>renan</i> / Senha: <i>renan</i>
+					</p>
+					<p class="card-text">
+						Usuário Comum: </br>Usuário: <i>aline</i> / Senha: <i>aline</i>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Logout Modal-->
+	<div class="modal fade" id="infoModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">
+						<i class="fas fa-info-circle"></i> Informações
+					</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Este projeto foi desenvolvido utilizando: Spring Security, Thymeleaf, 
+					 Bootstrap Javascript e Jquery. </p>
+
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" type="button" data-dismiss="modal">OK</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+<div id="alertModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header red">
+      
+        <h5 class="modal-title text-white"> <i class="fas fa-exclamation-triangle"></i> Atenção!</h5>
+        
+      </div>
+      <div class="modal-body">
+        <p>Usuário ou senha inválidos.</br>
+        Verifique os dados informados e tente novamente.
+      </div>
+      <div class="modal-footer">
+           <button type="button" class="btn btn-alert" data-dismiss="modal">Fechar</button>
+   
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script>
+	var pathName = window.location.search;
+
+	function abreModal() {
+			$("#alertModal").modal({
+				show : true
+			});
+		}
+		if (pathName === "?error=true") {
+			abreModal();
+		}
+
+</script>
+</body>
+</html>
